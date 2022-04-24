@@ -10,6 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_Scripts/ScriptableObjects/EventSignal.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -57,6 +60,8 @@
       <option name="presentableId" value="Default" />
       <updated>1650664001759</updated>
       <workItem from="1650664028941" duration="2482000" />
+      <workItem from="1650729542408" duration="2483000" />
+      <workItem from="1650829307121" duration="2567000" />
     </task>
     <servers />
   </component>

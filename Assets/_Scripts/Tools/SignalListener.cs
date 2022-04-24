@@ -6,12 +6,12 @@ using UnityEngine.Events;
 
 public class SignalListener : MonoBehaviour {
 
-    public Signal signal;
+    public EventSignal eventSignal;
     public UnityEvent signalEvent;
     
     public void OnSignalRaised() => signalEvent.Invoke();
 
-    private void OnEnable() => signal.RegisterListener(this);
+    private void OnEnable() => eventSignal.RegisterListener(this);
 
-    private void OnDisable() => signal.DeregisterListener(this);
+    private void OnDisable() => eventSignal.DeregisterListener(this);
 }
