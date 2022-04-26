@@ -25,10 +25,11 @@ public static class PlayerData {
     public static void SetHealth(int amount) => Health = amount;
 
     //Gear
-    public static Dictionary<Gear, bool> GearStatus { get; private set; } = new();
+    public static Dictionary<Gear, bool> GearStatus { get; } = new();
 
     private static void SetupGear() {
-        foreach (var gearType in Enum.GetValues(typeof(Gear)).Cast<Gear>()) {
+        var listOfGear = Enum.GetValues(typeof(Gear)).Cast<Gear>();
+        foreach (var gearType in listOfGear) {
             GearStatus.Add(gearType, false);
         }
     }

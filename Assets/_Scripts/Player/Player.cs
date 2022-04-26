@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable {
 
+    public static Player player;
+    
     [SerializeField] private int maxHealth = 100;
-    
-    
+
     private void Awake() {
+        player = this;
         PlayerData.Init(maxHealth);
     }
 
