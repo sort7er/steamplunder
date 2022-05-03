@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour {
-    
+
+    [SerializeField] private KeyCode defaultInteractionKey = KeyCode.E;
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private InteractionUI interactionUI;
 
@@ -21,22 +21,21 @@ public class PlayerInteraction : MonoBehaviour {
         bool hitSomething = false;
 
         if (Physics.Raycast(ray, out var hit, interactionDistance)) {
-            var interactable = hit.collider.GetComponent<InteractableBase>();
+            var interactable = hit.collider.GetComponent<IInteractable>();
 
             if (interactable != null) {
                 hitSomething = true;
-                interactionUI.SetIndicator(interactable);
+                interactionUI.SetIndicator(interactable, defaultInteractionKey);
                 interactionUI.SetPosition(_cam.WorldToScreenPoint(hit.collider.transform.position));
 
-                if (interactable.holdToInteract && Input.GetKey(interactable.InteractKey)) {
-                    interactable.Interact();
-                    return;
-                }
-
-                if (Input.GetKeyDown(interactable.InteractKey)) {
+                if (Input.GetKeyDown(defaultInteractionKey)) {
                     interactable.Interact();
                     interactionUI.gameObject.SetActive(false);
                     return;
+                }
+                
+                if (interactable.HoldToInteract && Input.GetKey(defaultInteractionKey)) {
+                    interactable.Interact();
                 }
             }
         }

@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable {
 
-    public static Player player;
-    
     [SerializeField] private int maxHealth = 100;
+    
+    private static Player _currentPlayer;
+
+    public static Player GetPlayer() {
+        if (_currentPlayer == null) Debug.LogWarning($"No player assigned!");
+        return _currentPlayer;
+    }
 
     private void Awake() {
-        player = this;
+        _currentPlayer = this;
         PlayerData.Init(maxHealth);
     }
 

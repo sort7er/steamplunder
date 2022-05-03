@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class HoldConsole : InteractableBase {
+public class HoldConsole : MonoBehaviour, IInteractable {
 
+    [SerializeField] private bool holdToInteract;
     [SerializeField] private Transform objectToRotate;
 
-    public override void Interact() {
+    public bool HoldToInteract => holdToInteract;
+
+    public void Interact() {
         objectToRotate.Rotate(Vector3.up, 1f);
     }
 
-    public override string GetDescription() {
+    public string GetDescription() {
         return "Rotate thing";
     }
 }

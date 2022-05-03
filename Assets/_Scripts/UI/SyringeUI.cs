@@ -54,7 +54,7 @@ public class SyringeUI : MonoBehaviour {
     private void Heal() {
         if (!_healReady) return;
         
-        Player.player.Heal(healAmount);
+        Player.GetPlayer().Heal(healAmount);
         SetHealReady(false);
         Cogs = 0;
         SetCogCount(Cogs);

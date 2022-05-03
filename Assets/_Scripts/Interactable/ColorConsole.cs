@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class ColorConsole : InteractableBase {
+public class ColorConsole : MonoBehaviour, IInteractable {
+    
     private bool hit;
-    public override void Interact() {
+    public bool HoldToInteract { get; }
+
+    public void Interact() {
         GetComponent<MeshRenderer>().material.color = hit ? Color.red : Color.green;
 
         hit = !hit;
     }
 
-    public override string GetDescription() {
+    public string GetDescription() {
         return hit ? "Make cube red" :"Make cube green";
     }
 }

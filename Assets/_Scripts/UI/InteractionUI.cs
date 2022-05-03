@@ -11,10 +11,10 @@ public class InteractionUI : MonoBehaviour {
         transform.position = pos;
     }
 
-    public void SetIndicator(InteractableBase interactable) {
+    public void SetIndicator(IInteractable interactable, KeyCode key) {
         interactionText.text = interactable.GetDescription();
-        keyText.text = interactable.InteractKey.ToString();
-        holdIndicator.SetActive(interactable.holdToInteract);
+        keyText.text = key.ToString();
+        holdIndicator.SetActive(interactable.HoldToInteract);
     }
     
 }
