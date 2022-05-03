@@ -14,7 +14,7 @@ public static class CheatMenu {
     
     [MenuItem("DevTools/Unlock Axe")]
     public static void UnlockAxe() {
-        PlayerData.UnlockGear(Gear.Axe);
+        PlayerData.UnlockArtifact(Artifact.Axe);
     }
 
 }

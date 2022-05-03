@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private Camera _cam;
     private Rigidbody _rb;
+    private Animator _animator;
     private bool _frozen;
 
     private void Awake() {
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
 
         if (_cam == null) {
             Debug.LogWarning($"{nameof(PlayerMovement)} cannot find a camera!");
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 inputVector = PlayerInput.Dir3;
         Vector3 movementVector = GetMovementVector(inputVector);
         Move(movementVector);
+        _animator.SetFloat("Movement", movementVector.magnitude);
         
         if (lookAtMouse) RotateToMouse();
         else RotateToMovement(movementVector);

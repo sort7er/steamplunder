@@ -14,7 +14,7 @@ public static class PlayerData {
         if (_initialized) return;
 
         if (Health == 0) SetHealth(maxHealth);
-        SetupGear();
+        SetupArtifactStatus();
 
         _initialized = true;
     }
@@ -25,26 +25,26 @@ public static class PlayerData {
     public static void SetHealth(int amount) => Health = amount;
 
     //Gear
-    public static Dictionary<Gear, bool> GearStatus { get; } = new();
+    public static Dictionary<Artifact, bool> ArtifactStatus { get; } = new();
 
-    private static void SetupGear() {
-        var listOfGear = Enum.GetValues(typeof(Gear)).Cast<Gear>();
-        foreach (var gearType in listOfGear) {
-            GearStatus.Add(gearType, false);
+    private static void SetupArtifactStatus() {
+        var listOfArtifacts = Enum.GetValues(typeof(Artifact)).Cast<Artifact>();
+        foreach (var artifactType in listOfArtifacts) {
+            ArtifactStatus.Add(artifactType, false);
         }
     }
     
-    public static void UnlockGear(Gear gearType) {
-        if (GearStatus.ContainsKey(gearType)) {
-            GearStatus[gearType] = true;
+    public static void UnlockArtifact(Artifact artifactType) {
+        if (ArtifactStatus.ContainsKey(artifactType)) {
+            ArtifactStatus[artifactType] = true;
         } else {
-            Debug.Log($"No {gearType.ToString()} in the system yet!");
+            Debug.Log($"No {artifactType.ToString()} in the system yet!");
         }
     }
 
 }
 
-public enum Gear {
+public enum Artifact {
     Axe,
     Spin,
     Gun,
