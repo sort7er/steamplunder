@@ -17,7 +17,8 @@ public class PlayerInteraction : MonoBehaviour {
     }
 
     private void InteractionRay() {
-        Ray ray = new Ray(transform.position, transform.forward);
+        var rayOrigin = transform.position + transform.up * .5f;
+        Ray ray = new Ray(rayOrigin, transform.forward);
         bool hitSomething = false;
 
         if (Physics.Raycast(ray, out var hit, interactionDistance)) {

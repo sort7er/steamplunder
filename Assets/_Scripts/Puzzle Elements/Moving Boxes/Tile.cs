@@ -6,9 +6,11 @@ public class Tile : MonoBehaviour {
 
     public bool TileOccupied => _currentBox != null;
 
-    public Vector3 TakeTile(WoodenBox box) {
+    public Tile TakeTile(WoodenBox box) {
         _currentBox = box;
-        return transform.position;
+        return this;
     }
-    
+
+    public void ClearTile() => _currentBox = null;
+
 }
