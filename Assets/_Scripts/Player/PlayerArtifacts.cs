@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerArtifacts : MonoBehaviour {
-
+    
+    public static Dictionary<Artifact, KeyCode> ArtifactKeyCodes { get; private set; }
+    
     private ArtifactBase[] _artifacts;
     private bool _actionOngoing;
 
@@ -13,6 +15,13 @@ public class PlayerArtifacts : MonoBehaviour {
         foreach (var artifact in _artifacts) {
             artifact.OnActionFinished += ArtifactActionEnded;
             Debug.Log($"Found {artifact.GetType()}");
+        }
+        
+        if (ArtifactKeyCodes == null) {
+            ArtifactKeyCodes = new();
+            foreach (var artifact in _artifacts) {
+                ArtifactKeyCodes.Add(artifact.ArtifactType, artifact.InputKey);
+            }
         }
     }
 
@@ -32,5 +41,6 @@ public class PlayerArtifacts : MonoBehaviour {
     private void ArtifactActionEnded() {
         _actionOngoing = false;
     }
+    
     
 }

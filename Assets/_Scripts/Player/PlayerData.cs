@@ -8,15 +8,24 @@ public static class PlayerData {
      * Data which needs to travel between scenes gets stored here
     */
 
+    //Initialization
+    
     private static bool _initialized;
     
     public static void Init(int maxHealth) {
-        if (_initialized) return;
+        if (_initialized) {
+            NewSceneInit();
+            return;
+        }
 
         if (Health == 0) SetHealth(maxHealth);
         SetupArtifactStatus();
 
         _initialized = true;
+    }
+
+    private static void NewSceneInit() {
+        //run all static events?
     }
     
     //Health
@@ -29,13 +38,14 @@ public static class PlayerData {
 
     public static event Action<int> OnHealthChanged;
 
-    //Gear
+    //Artifact
     public static Dictionary<Artifact, bool> ArtifactStatus { get; } = new();
 
     private static void SetupArtifactStatus() {
         var listOfArtifacts = Enum.GetValues(typeof(Artifact)).Cast<Artifact>();
         foreach (var artifactType in listOfArtifacts) {
-            ArtifactStatus.Add(artifactType, true);//change back to false when done testing
+            ArtifactStatus.Add(artifactType, false);
+            UnlockArtifact(artifactType);//REMOVE LATER
         }
     }
     

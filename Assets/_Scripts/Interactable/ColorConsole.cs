@@ -14,4 +14,6 @@ public class ColorConsole : MonoBehaviour, IInteractable {
     public string GetDescription() {
         return hit ? "Make cube red" :"Make cube green";
     }
+
+    public string GetKeyText() => null;
 }

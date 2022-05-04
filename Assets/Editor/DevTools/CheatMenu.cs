@@ -24,5 +24,15 @@ public static class CheatMenu {
     public static void UnlockAxe() {
         PlayerData.UnlockArtifact(Artifact.Axe);
     }
+    
+    [MenuItem("DevTools/Unlock Spin")]
+    public static void UnlockSpin() {
+        PlayerData.UnlockArtifact(Artifact.Spin);
+    }
+    
+    [MenuItem("DevTools/Unlock Gun")]
+    public static void UnlockGun() {
+        PlayerData.UnlockArtifact(Artifact.Gun);
+    }
 
 }

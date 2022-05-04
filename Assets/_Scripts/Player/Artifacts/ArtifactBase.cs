@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class ArtifactBase : MonoBehaviour {
 
-    [Header("Settings")]
-    [SerializeField] protected Artifact artifactType;
-    [SerializeField] protected KeyCode inputKey;
+    [field: SerializeField] public Artifact ArtifactType { get; private set; }
+    [field: SerializeField] public KeyCode InputKey { get; private set; }
     [SerializeField] protected int damage;
     [SerializeField] protected float cooldown;
     [SerializeField] protected GameObject artifactObject;
@@ -16,11 +15,11 @@ public abstract class ArtifactBase : MonoBehaviour {
     
     public event Action OnActionFinished;
 
-    private void Awake() => _animator = GetComponent<Animator>();
+    protected virtual void Awake() => _animator = GetComponent<Animator>();
 
     public bool CheckInput() {
-        bool canUse = PlayerData.ArtifactStatus[artifactType] && _ready;
-        return Input.GetKeyDown(inputKey) && canUse;
+        bool canUse = PlayerData.ArtifactStatus[ArtifactType] && _ready;
+        return Input.GetKeyDown(InputKey) && canUse;
     }
     
     private IEnumerator AttackCooldown() {
@@ -34,7 +33,7 @@ public abstract class ArtifactBase : MonoBehaviour {
         artifactObject.SetActive(true);
     }
 
-    private void ActionEnded() {
+    protected void ActionEnded() {
         artifactObject.SetActive(false);
         OnActionFinished?.Invoke();
         StartCoroutine(AttackCooldown());

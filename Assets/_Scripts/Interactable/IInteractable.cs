@@ -7,5 +7,7 @@ public interface IInteractable {
     public void Interact();
     
     public string GetDescription();
-    
+
+    public string GetKeyText();
+
 }

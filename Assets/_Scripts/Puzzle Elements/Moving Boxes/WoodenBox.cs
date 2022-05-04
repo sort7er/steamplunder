@@ -20,6 +20,10 @@ public class WoodenBox : MonoBehaviour, IInteractable {
         return "Push Box";
     }
 
+    public string GetKeyText() {
+        return null;
+    }
+
     private void Awake() {
         AlignToTile();
     }

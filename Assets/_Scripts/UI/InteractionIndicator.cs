@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class InteractionUI : MonoBehaviour {
+public class InteractionIndicator : MonoBehaviour {
 
     [SerializeField] private TMP_Text interactionText;
     [SerializeField] private TMP_Text keyText;
@@ -11,10 +11,16 @@ public class InteractionUI : MonoBehaviour {
         transform.position = pos;
     }
 
-    public void SetIndicator(IInteractable interactable, KeyCode key) {
+    public void SetIndicator(IInteractable interactable, string key) {
         interactionText.text = interactable.GetDescription();
-        keyText.text = key.ToString();
+        keyText.text = KeyTextConversion(interactable.GetKeyText() ?? key);
         holdIndicator.SetActive(interactable.HoldToInteract);
+    }
+    
+    private string KeyTextConversion(string key) {
+        if (key == "Mouse0") return "LM";
+        if (key == "Mouse1") return "RM";
+        return key;
     }
     
 }

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
         return _currentPlayer;
     }
 
-    private void Awake() {
+    private void Start() {
         _currentPlayer = this;
         PlayerData.Init(maxHealth);
     }

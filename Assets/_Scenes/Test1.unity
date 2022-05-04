@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
+  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -268,7 +268,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.293782, y: 1}
+    m_SensorSize: {x: 2.2997544, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -284,7 +284,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197408433}
-  m_LocalRotation: {x: 0.43713757, y: 0.000000015475331, z: -0.0000000075215585, w: 0.8993947}
+  m_LocalRotation: {x: 0.43713754, y: -0.000000015475324, z: 0.000000007521554, w: 0.8993947}
   m_LocalPosition: {x: 0, y: 15, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 199467244}
   - component: {fileID: 199467245}
   m_Layer: 5
-  m_Name: InteractionIndicator
+  m_Name: InteractionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635123595}
-  m_LocalRotation: {x: 0.43713757, y: 0.000000015475331, z: -0.0000000075215585, w: 0.8993947}
+  m_LocalRotation: {x: 0.43713754, y: -0.000000015475324, z: 0.000000007521554, w: 0.8993947}
   m_LocalPosition: {x: 0, y: 15, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1229,6 +1229,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  descriptionOverride: 
 --- !u!65 &706788915
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1300,7 +1301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706788913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.5, z: -5}
+  m_LocalPosition: {x: -2, y: 0.75, z: -5}
   m_LocalScale: {x: 4, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7450,7 +7451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3639866147930296193
 GameObject:
   m_ObjectHideFlags: 0
@@ -9417,7 +9418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6172790188778819461
 GameObject:
   m_ObjectHideFlags: 0
@@ -11099,7 +11100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultInteractionKey: 101
   interactionDistance: 2
-  interactionUI: {fileID: 9164308051347689125}
+  interactionIndicator: {fileID: 9164308051347689125}
 --- !u!114 &7574551305061303840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11188,12 +11189,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artifactType: 0
-  inputKey: 323
+  <ArtifactType>k__BackingField: 0
+  <InputKey>k__BackingField: 323
   damage: 20
   cooldown: 0.5
   artifactObject: {fileID: 7048681178862795834}
-  comboQueueTime: 0.5
+  lvl2Object: {fileID: 3617888154412582442}
+  lvl3Object: {fileID: 6158898279752487685}
+  damageLvl2: 30
+  comboTimingWindow: 0.3
 --- !u!4 &7610214152464914107
 Transform:
   m_ObjectHideFlags: 0
@@ -11706,8 +11710,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12727,7 +12731,7 @@ GameObject:
   - component: {fileID: 7074937173774535536}
   - component: {fileID: 9164308051347689125}
   m_Layer: 5
-  m_Name: InteractionUI
+  m_Name: InteractionIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

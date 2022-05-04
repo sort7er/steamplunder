@@ -11,7 +11,7 @@ public class HoldConsole : MonoBehaviour, IInteractable {
         objectToRotate.Rotate(Vector3.up, 1f);
     }
 
-    public string GetDescription() {
-        return "Rotate thing";
-    }
+    public string GetDescription() => "Rotate thing";
+
+    public string GetKeyText() => null;
 }

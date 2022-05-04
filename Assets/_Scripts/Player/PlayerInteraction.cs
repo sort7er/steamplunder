@@ -4,7 +4,7 @@ public class PlayerInteraction : MonoBehaviour {
 
     [SerializeField] private KeyCode defaultInteractionKey = KeyCode.E;
     [SerializeField] private float interactionDistance = 2f;
-    [SerializeField] private InteractionUI interactionUI;
+    [SerializeField] private InteractionIndicator interactionIndicator;
 
     private Camera _cam;
 
@@ -26,12 +26,12 @@ public class PlayerInteraction : MonoBehaviour {
 
             if (interactable != null) {
                 hitSomething = true;
-                interactionUI.SetIndicator(interactable, defaultInteractionKey);
-                interactionUI.SetPosition(_cam.WorldToScreenPoint(hit.collider.transform.position));
+                interactionIndicator.SetIndicator(interactable, defaultInteractionKey.ToString());
+                interactionIndicator.SetPosition(_cam.WorldToScreenPoint(hit.collider.transform.position));
 
                 if (Input.GetKeyDown(defaultInteractionKey)) {
                     interactable.Interact();
-                    interactionUI.gameObject.SetActive(false);
+                    interactionIndicator.gameObject.SetActive(false);
                     return;
                 }
                 
@@ -41,6 +41,6 @@ public class PlayerInteraction : MonoBehaviour {
             }
         }
         
-        interactionUI.gameObject.SetActive(hitSomething);
+        interactionIndicator.gameObject.SetActive(hitSomething);
     }
 }

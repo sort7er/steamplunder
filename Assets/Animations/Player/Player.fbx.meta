@@ -155,7 +155,7 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: ActionEnded
+        functionName: Attack1Ended
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc,
           type: 3}
@@ -190,11 +190,19 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: Attack2Ended
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 106
     - serializedVersion: 16
       name: Attack_3_Bash
       takeName: Attack_3_Bash
@@ -219,11 +227,19 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: ActionEnded
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 121
     - serializedVersion: 16
       name: Attack_3_Spin
       takeName: Attack_3_Spin
@@ -248,11 +264,19 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: ActionEnded
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 141
     - serializedVersion: 16
       name: Hammer_Bash
       takeName: Hammer_Bash
