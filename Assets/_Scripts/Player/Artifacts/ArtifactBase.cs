@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ArtifactBase : MonoBehaviour {
@@ -12,7 +11,7 @@ public abstract class ArtifactBase : MonoBehaviour {
     [SerializeField] protected float cooldown;
     [SerializeField] protected GameObject artifactObject;
     
-    private bool _ready = true;
+    protected bool _ready = true;
     protected Animator _animator;
     
     public event Action OnActionFinished;
@@ -32,13 +31,12 @@ public abstract class ArtifactBase : MonoBehaviour {
 
     public virtual void Use() {
         _ready = false;
-        StartCoroutine(AttackCooldown());
         artifactObject.SetActive(true);
-        Debug.Log("aballs");
     }
 
     private void ActionEnded() {
         artifactObject.SetActive(false);
         OnActionFinished?.Invoke();
+        StartCoroutine(AttackCooldown());
     }
 }

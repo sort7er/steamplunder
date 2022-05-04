@@ -2,21 +2,19 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ArtifactCollider : MonoBehaviour, IInteractable {
+public class ArtifactCollider : MonoBehaviour, IInteractable, IHittable {
 
     [SerializeField] private Artifact artifact;
     [SerializeField] private UnityEvent onArtifactHit;
 
-    public void OnHit(Artifact type) {
-        if (type == artifact) onArtifactHit.Invoke();
-    }
-
     public bool HoldToInteract { get; }
-    public void Interact() {
-        onArtifactHit.Invoke();
-    }
+    public void Interact() { }
 
     public string GetDescription() {
         return $"Use {artifact}";
+    }
+
+    public void Hit(int damage, Artifact source) {
+        if (source == artifact) onArtifactHit.Invoke();
     }
 }

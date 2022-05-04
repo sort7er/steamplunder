@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public abstract class EntityBase : MonoBehaviour {
+public class EntityBase : MonoBehaviour, IHittable {
 
     protected int health;
 
+    public void Hit(int damage, Artifact source) {
+        
+    }
 }

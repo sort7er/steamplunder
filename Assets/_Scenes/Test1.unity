@@ -268,7 +268,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2181933, y: 1}
+    m_SensorSize: {x: 2.293782, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10524,6 +10524,8 @@ GameObject:
   - component: {fileID: 7632277240384999045}
   - component: {fileID: 7822232056899297202}
   - component: {fileID: 1060680519048609717}
+  - component: {fileID: 7822232056899297204}
+  - component: {fileID: 7822232056899297203}
   m_Layer: 0
   m_Name: axe_mesh
   m_TagString: Untagged
@@ -11191,6 +11193,7 @@ MonoBehaviour:
   damage: 20
   cooldown: 0.5
   artifactObject: {fileID: 7048681178862795834}
+  comboQueueTime: 0.5
 --- !u!4 &7610214152464914107
 Transform:
   m_ObjectHideFlags: 0
@@ -11569,6 +11572,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7048681178862795834}
   m_Mesh: {fileID: 6759333011271741485, guid: eee08e328d521b144a0a372e8d6ca59e, type: 3}
+--- !u!114 &7822232056899297203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048681178862795834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdebc7d6256057438b6d0478c672790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &7822232056899297204
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048681178862795834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.316832
+  m_Height: 1.6302074
+  m_Direction: 1
+  m_Center: {x: 0.000011637807, y: 0.5239377, z: -0.02932319}
 --- !u!224 &7838869508071044716
 RectTransform:
   m_ObjectHideFlags: 0
