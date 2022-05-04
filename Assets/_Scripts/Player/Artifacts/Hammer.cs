@@ -1,7 +1,5 @@
 using UnityEngine;
 
-public class Hammer : MonoBehaviour {
+public class Hammer : ArtifactBase {
     
-
-
 }

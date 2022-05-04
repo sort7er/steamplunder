@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 
 public static class CheatMenu {
@@ -10,6 +11,13 @@ public static class CheatMenu {
     [MenuItem("DevTools/1 HP")]
     public static void OneHP() {
         PlayerData.SetHealth(1);
+    }
+    
+    [MenuItem("DevTools/Unlock All Artifacts")]
+    public static void UnlockAll() {
+        foreach (var artifact in PlayerData.ArtifactStatus.Keys.ToList()) {
+            PlayerData.UnlockArtifact(artifact);
+        }
     }
     
     [MenuItem("DevTools/Unlock Axe")]

@@ -153,11 +153,19 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: ActionEnded
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 89a027859f5ec4f43b6b96be0e0ed1dc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 91
     - serializedVersion: 16
       name: Attack_2
       takeName: Attack_2

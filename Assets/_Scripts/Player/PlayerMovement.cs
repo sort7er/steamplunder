@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody _rb;
     private Animator _animator;
     private bool _frozen;
-
+    
     private void Awake() {
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
@@ -31,9 +32,9 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 inputVector = PlayerInput.Dir3;
         Vector3 movementVector = GetMovementVector(inputVector);
         Move(movementVector);
-        _animator.SetFloat("Movement", movementVector.magnitude);
+        if (_animator != null) _animator.SetFloat("Movement", movementVector.magnitude);
         
-        if (lookAtMouse) RotateToMouse();
+        if (lookAtMouse || movementVector.magnitude < .1f) RotateToMouse();
         else RotateToMovement(movementVector);
     }
 
@@ -90,6 +91,5 @@ public class PlayerMovement : MonoBehaviour {
         _frozen = freeze;
         _rb.isKinematic = freeze;
     }
-    
     
 }
