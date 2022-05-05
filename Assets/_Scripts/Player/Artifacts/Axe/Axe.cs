@@ -41,6 +41,13 @@ public class Axe : ArtifactBase {
         } else
             ActionEnded();
     }
+    
+    private void Attack1InterruptCheck() {
+        if (_queuedTime > 0f) {
+            ResetHitbox();
+            _animator.SetTrigger("Attack 2");
+        }
+    }
 
     private void Attack2Ended() {
         if (_queuedTime > 0f) {

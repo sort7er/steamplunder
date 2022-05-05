@@ -134,7 +134,7 @@ ModelImporter:
       takeName: Attack_1
       internalID: 0
       firstFrame: 91
-      lastFrame: 105
+      lastFrame: 115
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -170,8 +170,8 @@ ModelImporter:
       name: Attack_2
       takeName: Attack_2
       internalID: 0
-      firstFrame: 106
-      lastFrame: 120
+      firstFrame: 116
+      lastFrame: 135
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -202,13 +202,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 106
+      additiveReferencePoseFrame: 115
     - serializedVersion: 16
       name: Attack_3_Bash
       takeName: Attack_3_Bash
       internalID: 0
-      firstFrame: 121
-      lastFrame: 140
+      firstFrame: 136
+      lastFrame: 155
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -239,13 +239,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 121
+      additiveReferencePoseFrame: 130
     - serializedVersion: 16
       name: Attack_3_Spin
       takeName: Attack_3_Spin
       internalID: 0
-      firstFrame: 141
-      lastFrame: 160
+      firstFrame: 156
+      lastFrame: 185
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -276,13 +276,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 141
+      additiveReferencePoseFrame: 151
     - serializedVersion: 16
       name: Hammer_Bash
       takeName: Hammer_Bash
       internalID: 0
-      firstFrame: 161
-      lastFrame: 180
+      firstFrame: 186
+      lastFrame: 210
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -302,7 +302,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.49402386
+      - time: 0.49003986
         functionName: OnGroundHit
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 21fc220762b2c984dbd47b951c84aa00,
@@ -321,13 +321,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 161
+      additiveReferencePoseFrame: 186
     - serializedVersion: 16
       name: Grapple_Shoot
       takeName: Grapple_Shoot
       internalID: 0
-      firstFrame: 181
-      lastFrame: 195
+      firstFrame: 205
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -350,13 +350,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 191
     - serializedVersion: 16
       name: Grapple_Fly
       takeName: Grapple_Fly
       internalID: 0
-      firstFrame: 196
-      lastFrame: 205
+      firstFrame: 215
+      lastFrame: 245
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -379,13 +379,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 196
+      additiveReferencePoseFrame: 205
     - serializedVersion: 16
       name: Steamer_Equip
       takeName: Steamer_Equip
       internalID: 0
-      firstFrame: 206
-      lastFrame: 245
+      firstFrame: 246
+      lastFrame: 265
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -408,41 +408,12 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 215
     - serializedVersion: 16
       name: Steamer_Steam
       takeName: Steamer_Steam
       internalID: 0
-      firstFrame: 246
-      lastFrame: 275
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Block
-      takeName: Block
-      internalID: 0
-      firstFrame: 276
+      firstFrame: 266
       lastFrame: 295
       wrapMode: 0
       orientationOffsetY: 0
@@ -466,13 +437,13 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 256
     - serializedVersion: 16
-      name: Shoot
-      takeName: Shoot
+      name: Block
+      takeName: Block
       internalID: 0
       firstFrame: 296
-      lastFrame: 320
+      lastFrame: 315
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -495,7 +466,36 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 295
+    - serializedVersion: 16
+      name: Shoot
+      takeName: Shoot
+      internalID: 0
+      firstFrame: 316
+      lastFrame: 340
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 306
     isReadable: 0
   meshes:
     lODScreenPercentages: []
