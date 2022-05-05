@@ -45,12 +45,15 @@ public static class PlayerData {
         var listOfArtifacts = Enum.GetValues(typeof(Artifact)).Cast<Artifact>();
         foreach (var artifactType in listOfArtifacts) {
             ArtifactStatus.Add(artifactType, false);
-            UnlockArtifact(artifactType);//REMOVE LATER
         }
     }
     
     public static void UnlockArtifact(Artifact artifactType) {
         if (ArtifactStatus.ContainsKey(artifactType)) {
+            if (ArtifactStatus[artifactType]) {
+                Debug.Log($"{artifactType} tried to be unlocked, but already is!");
+                return;
+            }
             ArtifactStatus[artifactType] = true;
             OnArtifactUnlocked?.Invoke(artifactType);
         } else {

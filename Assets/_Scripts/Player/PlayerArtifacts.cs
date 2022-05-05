@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerArtifacts : MonoBehaviour {
-    
+
+    [SerializeField] private List<Artifact> startAsUnlockedOverride;
+
     public static Dictionary<Artifact, KeyCode> ArtifactKeyCodes { get; private set; }
     
     private ArtifactBase[] _artifacts;
@@ -22,6 +24,12 @@ public class PlayerArtifacts : MonoBehaviour {
             foreach (var artifact in _artifacts) {
                 ArtifactKeyCodes.Add(artifact.ArtifactType, artifact.InputKey);
             }
+        }
+    }
+
+    private void Start() {
+        foreach (var artifact in startAsUnlockedOverride) {
+            PlayerData.UnlockArtifact(artifact);
         }
     }
 

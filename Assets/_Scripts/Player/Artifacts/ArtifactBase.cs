@@ -37,5 +37,6 @@ public abstract class ArtifactBase : MonoBehaviour {
         artifactObject.SetActive(false);
         OnActionFinished?.Invoke();
         StartCoroutine(AttackCooldown());
+        _animator.SetTrigger("Action Ended");
     }
 }

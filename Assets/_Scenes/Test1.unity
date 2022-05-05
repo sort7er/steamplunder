@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
+  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -268,7 +268,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2997544, y: 1}
+    m_SensorSize: {x: 2.2879746, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10589,6 +10589,7 @@ GameObject:
   - component: {fileID: 7574551305061303839}
   - component: {fileID: 7574551305061303844}
   - component: {fileID: 7574551305061303845}
+  - component: {fileID: 7574551305061303846}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11177,6 +11178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675f2a4056f06f42bf09ea646ea1309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAsUnlockedOverride: 000000000100000002000000030000000400000005000000
 --- !u!114 &7574551305061303845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11198,6 +11200,23 @@ MonoBehaviour:
   lvl3Object: {fileID: 6158898279752487685}
   damageLvl2: 30
   comboTimingWindow: 0.3
+--- !u!114 &7574551305061303846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085823486359690404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fc220762b2c984dbd47b951c84aa00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArtifactType>k__BackingField: 3
+  <InputKey>k__BackingField: 102
+  damage: 30
+  cooldown: 2
+  artifactObject: {fileID: 6456619817762472240}
 --- !u!4 &7610214152464914107
 Transform:
   m_ObjectHideFlags: 0

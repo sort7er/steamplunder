@@ -301,11 +301,19 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: ActionEnded
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 21fc220762b2c984dbd47b951c84aa00,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 161
     - serializedVersion: 16
       name: Grapple_Shoot
       takeName: Grapple_Shoot
