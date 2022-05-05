@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour {
         return _currentPlayer;
     }
 
-    private void Start() {
+    private void Awake() {
         _currentPlayer = this;
         PlayerData.Init(maxHealth);
     }

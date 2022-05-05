@@ -71,4 +71,9 @@ public class Axe : ArtifactBase {
         _hitbox.enabled = true;
         _hitbox.enabled = false;
     }
+    
+    private void OnDestroy() {
+        PlayerData.OnArtifactUnlocked -= OnArtifactUnlocked;
+    }
+    
 }

@@ -62,5 +62,8 @@ public static class PlayerData {
     }
 
     public static event Action<Artifact> OnArtifactUnlocked;
+    
+    //SceneTransition Door
+    public static int? previousDoorId;
 
 }

@@ -18,8 +18,12 @@ public abstract class EnemyBase : EntityBase {
         Destroy(gameObject);
     }
 
+    public virtual void Stun() {
+        //default stun
+    }
+
     //attack?
     //navmesh?
     //ai?
-    
+
 }

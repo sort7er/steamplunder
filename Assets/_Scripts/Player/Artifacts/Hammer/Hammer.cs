@@ -6,8 +6,9 @@ public class Hammer : ArtifactBase {
     /*
      * 1. Write out hammer functionality *
      * 2. Add support for double interaction indicator *
-     * 3. No cooldown on puzzle element hit
+     * 3. No cooldown on puzzle element hit ?
      * 4. Find similarities to axe and abstract them
+     * 5. Test slowing down player turn and move speed when using artifact
      */
     
     [SerializeField] private float knockbackStength = 10f;
@@ -36,6 +37,10 @@ public class Hammer : ArtifactBase {
                 Vector3 knockbackDir = (collider.position - colliderCenter).normalized;
                 Vector3 knockbackVector = knockbackDir * knockbackStength * fraction;
                 rb.AddForce(knockbackVector, ForceMode.Impulse);
+            }
+            
+            if (collider.TryGetComponent<EnemyBase>(out var enemy)) {
+                enemy.Stun();
             }
         }
 

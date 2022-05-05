@@ -18,4 +18,9 @@ public class InteractionUI : MonoBehaviour {
         interactionIndicators[index].SetIndicator(interactable, defaultKeyText);
         transform.position = pos;
     }
+
+    private void OnDestroy() {
+        PlayerInteraction.OnSetIndicator -= SetIndicator;
+        PlayerInteraction.OnIndicatorSetActive -= IndicatorSetActive;
+    }
 }
