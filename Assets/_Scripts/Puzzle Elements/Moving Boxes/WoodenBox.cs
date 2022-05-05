@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class WoodenBox : MonoBehaviour, IInteractable {
+public class WoodenBox : MonoBehaviour, IInteractable, IHittable {
     [SerializeField] private float slideSpeed = 10f;
     [SerializeField] private float raycastLength = 1.5f;
+    [SerializeField] private string description = "Push";
 
     private bool _isMoving;
     private Vector3 _targetPos;
@@ -13,20 +14,22 @@ public class WoodenBox : MonoBehaviour, IInteractable {
     public bool HoldToInteract => false;
 
     public void Interact() {
-        AttemptMove(true);
+        AttemptMove();
     }
 
     public string GetDescription() {
-        return "Push Box";
+        return description;
     }
 
     public string GetKeyText() {
         return null;
     }
-
-    private void Awake() {
-        AlignToTile();
+    
+    public void Hit(int damage, Artifact source) {
+        if (source == Artifact.Hammer) AttemptMove(true);
     }
+
+    private void Awake() => AlignToTile();
 
     private void Update() {
         if (_isMoving) {
@@ -125,4 +128,6 @@ public class WoodenBox : MonoBehaviour, IInteractable {
         Gizmos.DrawLine(position, position + t.right * raycastLength);
         Gizmos.DrawLine(position, position - t.right * raycastLength);
     }
+
+    
 }

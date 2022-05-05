@@ -18,7 +18,7 @@ public class AxeHitbox : MonoBehaviour {
 
     private void EnableTrigger() => _triggerEnabled = true;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if (_artifact == null) {
             Debug.LogWarning($"Artifact connection missing on: {gameObject.name}");
             return;

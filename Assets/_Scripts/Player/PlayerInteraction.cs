@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour {
 
+    public static event Action<int, IInteractable, Vector3, string> OnSetIndicator;
+    public static event Action<int, bool> OnIndicatorSetActive;
+    
     [SerializeField] private KeyCode defaultInteractionKey = KeyCode.E;
     [SerializeField] private float interactionDistance = 2f;
-    [SerializeField] private InteractionIndicator interactionIndicator;
 
     private Camera _cam;
 
@@ -19,28 +22,30 @@ public class PlayerInteraction : MonoBehaviour {
     private void InteractionRay() {
         var rayOrigin = transform.position + transform.up * .5f;
         Ray ray = new Ray(rayOrigin, transform.forward);
-        bool hitSomething = false;
+        bool[] hitSomething = {false, false};
 
         if (Physics.Raycast(ray, out var hit, interactionDistance)) {
-            var interactable = hit.collider.GetComponent<IInteractable>();
+            var interactables = hit.collider.GetComponents<IInteractable>();
 
-            if (interactable != null) {
-                hitSomething = true;
-                interactionIndicator.SetIndicator(interactable, defaultInteractionKey.ToString());
-                interactionIndicator.SetPosition(_cam.WorldToScreenPoint(hit.collider.transform.position));
+            for (var i = 0; i < interactables.Length; i++) {
+                var interactable = interactables[i];
+                
+                hitSomething[i] = true;
+                OnSetIndicator?.Invoke(i, interactable, _cam.WorldToScreenPoint(hit.collider.transform.position),
+                    defaultInteractionKey.ToString());
 
                 if (Input.GetKeyDown(defaultInteractionKey)) {
                     interactable.Interact();
-                    interactionIndicator.gameObject.SetActive(false);
+                    OnIndicatorSetActive?.Invoke(i, false);
                     return;
                 }
-                
+
                 if (interactable.HoldToInteract && Input.GetKey(defaultInteractionKey)) {
                     interactable.Interact();
                 }
             }
         }
-        
-        interactionIndicator.gameObject.SetActive(hitSomething);
+
+        for (int i = 0; i < 2; i++) OnIndicatorSetActive?.Invoke(i, hitSomething[i]);
     }
 }

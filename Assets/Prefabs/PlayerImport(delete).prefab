@@ -2977,7 +2977,7 @@ GameObject:
   - component: {fileID: 7574551304366637873}
   - component: {fileID: 4611152287417702731}
   m_Layer: 0
-  m_Name: PlayerImport
+  m_Name: PlayerImport(delete)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

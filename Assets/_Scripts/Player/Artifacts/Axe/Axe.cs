@@ -9,9 +9,11 @@ public class Axe : ArtifactBase {
     [SerializeField] private float comboTimingWindow = .3f;
 
     private float _queuedTime;
+    private AxeHitbox _hitbox;
 
     public override void Use() {
         base.Use();
+        ResetHitbox();
         _animator.SetTrigger("Attack 1");
     }
 
@@ -20,8 +22,8 @@ public class Axe : ArtifactBase {
     protected override void Awake() {
         base.Awake();
         PlayerData.OnArtifactUnlocked += OnArtifactUnlocked;
-        if (artifactObject.TryGetComponent<AxeHitbox>(out var hitbox)) {
-            hitbox.SetArtifact(this);
+        if (artifactObject.TryGetComponent<AxeHitbox>(out _hitbox)) {
+            _hitbox.SetArtifact(this);
         }
     }
 
@@ -33,14 +35,16 @@ public class Axe : ArtifactBase {
     }
 
     private void Attack1Ended() {
-        if (_queuedTime > 0f)
+        if (_queuedTime > 0f) {
+            ResetHitbox();
             _animator.SetTrigger("Attack 2");
-        else
+        } else
             ActionEnded();
     }
 
     private void Attack2Ended() {
         if (_queuedTime > 0f) {
+            ResetHitbox();
             if (PlayerData.ArtifactStatus[Artifact.Spin])
                 if (Random.value > .5f) {
                     _animator.SetTrigger("Spin Attack");
@@ -54,5 +58,10 @@ public class Axe : ArtifactBase {
     private void OnArtifactUnlocked(Artifact type) {
         if (type == Artifact.Spin) lvl2Object.SetActive(true); 
         else if (type == Artifact.Gun) lvl3Object.SetActive(true); 
+    }
+
+    private void ResetHitbox() {
+        _hitbox.enabled = true;
+        _hitbox.enabled = false;
     }
 }

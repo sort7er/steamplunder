@@ -7,10 +7,6 @@ public class InteractionIndicator : MonoBehaviour {
     [SerializeField] private TMP_Text keyText;
     [SerializeField] private GameObject holdIndicator;
 
-    public void SetPosition(Vector3 pos) {
-        transform.position = pos;
-    }
-
     public void SetIndicator(IInteractable interactable, string key) {
         interactionText.text = interactable.GetDescription();
         keyText.text = KeyTextConversion(interactable.GetKeyText() ?? key);
