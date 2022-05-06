@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7437042660301348250}
   - component: {fileID: 7437042660301348255}
   m_Layer: 0
-  m_Name: RigidbodyEnemy
+  m_Name: RigidbodyTestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

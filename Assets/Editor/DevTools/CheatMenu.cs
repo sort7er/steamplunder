@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 
 public static class CheatMenu {
 
@@ -35,4 +36,8 @@ public static class CheatMenu {
         PlayerData.UnlockArtifact(Artifact.Gun);
     }
 
+    [MenuItem("DevTools/Delete Save (!!!)")]
+    private static void DeleteSave() {
+        PlayerPrefs.DeleteAll();
+    }
 }
