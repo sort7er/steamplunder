@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +10,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private GameObject logo;
 
     public void PlayButton() {
-        if (PlayerData.isSavedGame.GetBool()) {
+        if (PlayerData.isSavedGame.GetSavedBool()) {
             mainScreen.SetActive(false);
             saveScreen.SetActive(true);
             return;

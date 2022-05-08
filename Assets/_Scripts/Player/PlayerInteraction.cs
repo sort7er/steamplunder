@@ -26,7 +26,8 @@ public class PlayerInteraction : MonoBehaviour {
 
         if (Physics.Raycast(ray, out var hit, interactionDistance)) {
             var interactables = hit.collider.GetComponents<IInteractable>();
-
+            if (interactables.Length > 2) Debug.LogWarning($"{hit.collider.gameObject.name} has more than 2 interactables!");
+            
             for (var i = 0; i < interactables.Length; i++) {
                 var interactable = interactables[i];
                 

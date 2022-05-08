@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675f2a4056f06f42bf09ea646ea1309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAsUnlockedOverride: 
+  startAsUnlockedOverride: 000000000100000002000000030000000400000005000000
 --- !u!114 &2056196034344536296
 MonoBehaviour:
   m_ObjectHideFlags: 0

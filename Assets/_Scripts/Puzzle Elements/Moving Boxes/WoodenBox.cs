@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class WoodenBox : MonoBehaviour, IInteractable, IHittable {
