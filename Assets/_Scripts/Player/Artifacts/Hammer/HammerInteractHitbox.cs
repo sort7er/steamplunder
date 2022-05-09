@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HammerInteractHitbox : MonoBehaviour {
@@ -9,10 +10,15 @@ public class HammerInteractHitbox : MonoBehaviour {
     private void OnEnable() {
         _colliders = new List<Transform>();
         _triggerEnabled = false;
-        Invoke(nameof(EnableTrigger), .2f);
+        StartCoroutine(ToggleTrigger());
     }
 
-    private void EnableTrigger() => _triggerEnabled = true;
+    private IEnumerator ToggleTrigger() {
+        yield return new WaitForSeconds(.2f);
+        _triggerEnabled = true;
+        yield return new WaitForSeconds(.2f);
+        _triggerEnabled = false;
+    }
 
     private void OnTriggerStay(Collider other) {
         if (!_triggerEnabled) return;

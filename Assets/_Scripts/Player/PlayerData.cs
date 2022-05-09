@@ -77,7 +77,7 @@ public static class PlayerData {
         Plains_StrangerEvent = 2
     }
 
-    private static List<string> _watchedStoryCutscenes;
+    private static List<string> _watchedStoryCutscenes = new();
     
     public static void AddToWatchedStoryCutscenes(string storyCutsceneId) => _watchedStoryCutscenes.Add(storyCutsceneId);
 
