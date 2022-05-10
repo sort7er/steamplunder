@@ -15,7 +15,7 @@ public class PlatePuzzleController : MonoBehaviour {
         }
     }
 
-    private void OnDisable() {
+    private void OnDestroy() {
         foreach (var plateTile in platesToCheck) {
             plateTile.OnPressStateChanged -= OnPlatePressStateChanged;
         }

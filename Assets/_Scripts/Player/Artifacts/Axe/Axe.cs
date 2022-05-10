@@ -21,7 +21,7 @@ public class Axe : ArtifactBase {
     protected override void Awake() {
         base.Awake();
         PlayerData.OnArtifactUnlocked += OnArtifactUnlocked;
-        if (artifactObject.TryGetComponent<AxeHitbox>(out _hitbox)) {
+        if (artifactObject.TryGetComponent(out _hitbox)) {
             _hitbox.SetArtifact(this);
         }
     }

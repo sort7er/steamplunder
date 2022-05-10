@@ -60,8 +60,9 @@ public static class PlayerData {
 
             ArtifactStatus[artifactType] = true;
             OnArtifactUnlocked?.Invoke(artifactType);
+            Debug.Log($"{artifactType} unlocked");
         } else {
-            Debug.Log($"No {artifactType.ToString()} in the system yet!");
+            Debug.Log($"No {artifactType} in the system yet!");
         }
     }
 

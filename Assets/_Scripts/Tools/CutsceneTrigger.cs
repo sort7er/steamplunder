@@ -26,7 +26,7 @@ public class CutsceneTrigger : MonoBehaviour {
 
     private void OnEnable() => CutsceneManager.OnCutsceneFinished += OnCutsceneFinished;
 
-    private void OnDisable() => CutsceneManager.OnCutsceneFinished -= OnCutsceneFinished;
+    private void OnDestroy() => CutsceneManager.OnCutsceneFinished -= OnCutsceneFinished;
 
     private void OnTriggerEnter(Collider other) {
         if (_played || !other.CompareTag("Player")) return;
