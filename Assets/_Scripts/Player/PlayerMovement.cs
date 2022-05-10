@@ -45,11 +45,13 @@ public class PlayerMovement : MonoBehaviour {
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance: 300f, mouseAreaLayer)) {
-            Vector3 target = hit.point;
-            target.y = transform.position.y;
-            
-            transform.LookAt(target);
+            LookAt(hit.point);
         }
+    }
+
+    public void LookAt(Vector3 lookPos) {
+        lookPos.y = transform.position.y;
+        transform.LookAt(lookPos);
     }
 
     //Rotate to the direction of the player's movement

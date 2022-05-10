@@ -5,15 +5,15 @@ public class GrapplePoint : MonoBehaviour {
 
     public static event Action<bool> OnStateChanged;
 
-    public static GrapplePoint CurrentGrapplePoint { get; private set; }
+    public static GrapplePoint Current { get; private set; }
 
     private void OnMouseEnter() {
-        CurrentGrapplePoint = this;
+        Current = this;
         OnStateChanged?.Invoke(true);
     }
 
     private void OnMouseExit() {
-        if (CurrentGrapplePoint == this) CurrentGrapplePoint = null;
+        if (Current == this) Current = null;
         OnStateChanged?.Invoke(false);
     }
 
