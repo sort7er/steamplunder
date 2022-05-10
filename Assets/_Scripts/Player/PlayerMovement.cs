@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -27,12 +26,15 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (_frozen) return;
-        
         Vector3 inputVector = PlayerInput.Dir3;
         Vector3 movementVector = GetMovementVector(inputVector);
+        if (_animator != null) {
+            var movementVectorMagnitude = _frozen ? 0f : movementVector.magnitude;
+            _animator.SetFloat("Movement", movementVectorMagnitude);
+        }
+
+        if (_frozen) return;
         Move(movementVector);
-        if (_animator != null) _animator.SetFloat("Movement", movementVector.magnitude);
         
         if (lookAtMouse || movementVector.magnitude < .1f) RotateToMouse();
         else RotateToMovement(movementVector);

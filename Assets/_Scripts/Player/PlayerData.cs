@@ -60,8 +60,9 @@ public static class PlayerData {
 
             ArtifactStatus[artifactType] = true;
             OnArtifactUnlocked?.Invoke(artifactType);
+            Debug.Log($"{artifactType} unlocked");
         } else {
-            Debug.Log($"No {artifactType.ToString()} in the system yet!");
+            Debug.Log($"No {artifactType} in the system yet!");
         }
     }
 
@@ -72,9 +73,15 @@ public static class PlayerData {
 
     //Story beats, ow puzzle completions
     public enum StoryBeats {//Important events, would often be things that would happen next to a shrine
-        
+        Tutorial_AxeGet = 0,
+        D1_HammerGet = 1,
+        Plains_StrangerEvent = 2
     }
+
+    private static List<string> _watchedStoryCutscenes = new();
     
+    public static void AddToWatchedStoryCutscenes(string storyCutsceneId) => _watchedStoryCutscenes.Add(storyCutsceneId);
+
     //Saving and Loading
     public static readonly string isSavedGame = nameof(isSavedGame);
     private static readonly string savedScene = nameof(savedScene);
@@ -82,6 +89,8 @@ public static class PlayerData {
 
     public static void Save() {
         isSavedGame.SaveBool(true);
+        
+        //Player related
         savedScene.SaveString(SceneManager.GetActiveScene().name);
         savedHealth.SaveInt(Health);
         foreach (var pair in ArtifactStatus) {
@@ -89,26 +98,31 @@ public static class PlayerData {
             pair.Key.ToString().SaveBool(pair.Value);
         }
         
+        //world and progression related
+        foreach (var watchedStoryCutscene in _watchedStoryCutscenes) {
+            watchedStoryCutscene.SaveBool(true);
+        }
+
         PlayerPrefs.Save();
     }
 
     public static void Load() {
-        Health = savedHealth.GetInt();
+        Health = savedHealth.GetSavedInt();
         SetupArtifactStatus();
         foreach (var artifact in Enum.GetValues(typeof(Artifact)).Cast<Artifact>()) {
-            if (artifact.ToString().GetBool()) UnlockArtifact(artifact);
+            if (artifact.ToString().GetSavedBool()) UnlockArtifact(artifact);
         }
 
-        SceneManager.LoadScene(savedScene.GetString());
+        SceneManager.LoadScene(savedScene.GetSavedString());
     }
 
     private static void SaveInt(this string key, int value) => PlayerPrefs.SetInt(key, value);
     private static void SaveString(this string key, string value) => PlayerPrefs.SetString(key, value);
     private static void SaveBool(this string key, bool value) => PlayerPrefs.SetInt(key, value ? 1 : 0);
     
-    public static int GetInt(this string key) => PlayerPrefs.GetInt(key);
-    public static string GetString(this string key) => PlayerPrefs.GetString(key);
-    public static bool GetBool(this string key) => PlayerPrefs.GetInt(key) == 1;
+    public static int GetSavedInt(this string key) => PlayerPrefs.GetInt(key);
+    public static string GetSavedString(this string key) => PlayerPrefs.GetString(key);
+    public static bool GetSavedBool(this string key) => PlayerPrefs.GetInt(key) == 1;
 
 
 }

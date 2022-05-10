@@ -35,6 +35,21 @@ public static class CheatMenu {
     public static void UnlockGun() {
         PlayerData.UnlockArtifact(Artifact.Gun);
     }
+    
+    [MenuItem("DevTools/Unlock Hammer")]
+    public static void UnlockHammer() {
+        PlayerData.UnlockArtifact(Artifact.Hammer);
+    }
+    
+    [MenuItem("DevTools/Unlock Grapple")]
+    public static void UnlockGrapple() {
+        PlayerData.UnlockArtifact(Artifact.Grapple);
+    }
+    
+    [MenuItem("DevTools/Unlock Steamer")]
+    public static void UnlockSteamer() {
+        PlayerData.UnlockArtifact(Artifact.Steamer);
+    }
 
     [MenuItem("DevTools/Delete Save (!!!)")]
     private static void DeleteSave() {

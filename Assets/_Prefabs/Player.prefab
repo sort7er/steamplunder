@@ -739,6 +739,7 @@ GameObject:
   - component: {fileID: 2056196034344536297}
   - component: {fileID: 2056196034344536296}
   - component: {fileID: 2056196034344536299}
+  - component: {fileID: 7017179001122131687}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -880,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675f2a4056f06f42bf09ea646ea1309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAsUnlockedOverride: 
+  startAsUnlockedOverride: 000000000100000002000000030000000400000005000000
 --- !u!114 &2056196034344536296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,10 +917,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ArtifactType>k__BackingField: 3
   <InputKey>k__BackingField: 102
-  damage: 30
+  damage: 20
   cooldown: 0.5
   artifactObject: {fileID: 3174369931754999805}
   knockbackStength: 10
+--- !u!114 &7017179001122131687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712146083877753449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741f578a531e0e24dada0856a3df0416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArtifactType>k__BackingField: 4
+  <InputKey>k__BackingField: 114
+  damage: 5
+  cooldown: 0.5
+  artifactObject: {fileID: 8377075593305366223}
+  grappleRange: 0
 --- !u!1 &1862400896677588947
 GameObject:
   m_ObjectHideFlags: 0

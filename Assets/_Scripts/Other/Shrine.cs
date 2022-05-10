@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shrine : MonoBehaviour, IInteractable {
 
     [SerializeField] private float saveDelay = 1f;
+    [SerializeField] private UnityEvent onSave;
 
     private bool _onSaveTimeout;
     
@@ -15,6 +17,7 @@ public class Shrine : MonoBehaviour, IInteractable {
     }
 
     private IEnumerator Save() {
+        onSave.Invoke();
         PlayerData.Save();
         _onSaveTimeout = true;
         yield return new WaitForSeconds(saveDelay);
