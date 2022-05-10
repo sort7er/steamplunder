@@ -1,35 +1,32 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrappleIndicatorUI : MonoBehaviour {
 
-    [SerializeField] private GameObject grappleIndicator;
+    [SerializeField] private Image grappleIndicator;
 
-    private GrapplePoint _currentGrapplePoint;
     private Camera _cam;
 
     private void Awake() {
         _cam = Camera.main;
-        GrapplePoint.OnPointEnter += OnPointEnter;
-        GrapplePoint.OnPointExit += OnPointExit;
+        GrapplePoint.OnStateChanged += OnGrapplePointStateChanged;
+    }
+
+    private void OnDestroy() {
+        GrapplePoint.OnStateChanged -= OnGrapplePointStateChanged;
     }
 
     private void Update() {
-        if (_currentGrapplePoint != null) {
-            grappleIndicator.transform.position = _cam.WorldToScreenPoint(_currentGrapplePoint.transform.position);
+        if (GrapplePoint.CurrentGrapplePoint != null) {
+            grappleIndicator.transform.position = 
+                _cam.WorldToScreenPoint(GrapplePoint.CurrentGrapplePoint.transform.position);
+            grappleIndicator.color = Grapple.CanGrappleToPoint ? Color.green : Color.red;
         }
-    }
-
-    private void OnPointEnter(GrapplePoint point) {
-        _currentGrapplePoint = point;
-        grappleIndicator.SetActive(true);
     }
     
-    private void OnPointExit(GrapplePoint point) {
-        if (_currentGrapplePoint == point) {
-            grappleIndicator.SetActive(false);
-            _currentGrapplePoint = null;
-        }
+    private void OnGrapplePointStateChanged(bool state) {
+        grappleIndicator.gameObject.SetActive(state);
     }
 
 }

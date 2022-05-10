@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour {
 
-    public static Action<GrapplePoint> OnPointEnter;
-    public static Action<GrapplePoint> OnPointExit;
+    public static event Action<bool> OnStateChanged;
+
+    public static GrapplePoint CurrentGrapplePoint { get; private set; }
 
     private void OnMouseEnter() {
-        OnPointEnter?.Invoke(this);
+        CurrentGrapplePoint = this;
+        OnStateChanged?.Invoke(true);
     }
 
     private void OnMouseExit() {
-        OnPointExit?.Invoke(this);
+        if (CurrentGrapplePoint == this) CurrentGrapplePoint = null;
+        OnStateChanged?.Invoke(false);
     }
 
 }

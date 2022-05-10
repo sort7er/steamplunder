@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d42d146fc401d947ae35d2933d813e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappleIndicator: {fileID: 1402197454}
+  grappleIndicator: {fileID: 1402197457}
 --- !u!1 &760609644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,8 +1831,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501087556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 1, z: -4}
-  m_LocalScale: {x: 3.5, y: 1, z: 2.5}
+  m_LocalPosition: {x: -7, y: 2, z: -4}
+  m_LocalScale: {x: 3.5, y: 1, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1283352673}
@@ -2317,7 +2317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874626243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 1, z: -10}
+  m_LocalPosition: {x: -7, y: 3.5, z: -4}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3354,7 +3354,7 @@ PrefabInstance:
     - target: {fileID: 1781881341407071559, guid: 35a48c269f2196f4d95fd96033a81631,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 1781881341407071559, guid: 35a48c269f2196f4d95fd96033a81631,
         type: 3}
@@ -3364,7 +3364,7 @@ PrefabInstance:
     - target: {fileID: 1781881341407071559, guid: 35a48c269f2196f4d95fd96033a81631,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1781881341407071559, guid: 35a48c269f2196f4d95fd96033a81631,
         type: 3}

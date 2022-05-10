@@ -938,7 +938,8 @@ MonoBehaviour:
   damage: 5
   cooldown: 0.5
   artifactObject: {fileID: 8377075593305366223}
-  grappleRange: 0
+  grappleRange: 10
+  maxHeightDifference: 3.5
 --- !u!1 &1862400896677588947
 GameObject:
   m_ObjectHideFlags: 0
