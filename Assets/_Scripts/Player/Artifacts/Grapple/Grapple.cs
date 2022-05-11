@@ -6,7 +6,9 @@ public class Grapple : ArtifactBase {
     [SerializeField] private float grappleRange = 8f;
     [SerializeField] private float maxHeightDifference = 3.5f;
     [SerializeField] private float extendSpeed = 10f;
-    [SerializeField] private float retractSpeed = 5f;
+    [SerializeField] private float retractSpeed = 8f;
+    [SerializeField] private float flyingSpeed = 5f;
+    [SerializeField] private float howCloseBeforeDetach = 1f;
 
     [SerializeField] private Transform clawTransform;
     [SerializeField] private Transform clawGearTransform;
@@ -17,34 +19,56 @@ public class Grapple : ArtifactBase {
 
     private float _sqrGrappleRange;
     private PlayerMovement _playerMovement;
-    private bool _isExtending;
+    private GrappleState _currentGrappleState;
+    private GrapplePoint _whichPointToGrapple;
     private Vector3 _lerpTo;
+    private Vector3 _clawLocalOrigin;
+
+    private bool IsGrappling => _currentGrappleState != GrappleState.Idle;
     
     protected override void Awake() {
         base.Awake();
         _sqrGrappleRange = Mathf.Pow(grappleRange, 2);
         _playerMovement = GetComponent<PlayerMovement>();
+        _clawLocalOrigin = clawTransform.localPosition;
     }
 
     private void Update() {
         CanGrappleToPoint = CheckCanGrappleToPoint();
 
-        if (_isExtending) {
+        if (_currentGrappleState == GrappleState.Extending) {
             clawTransform.position = 
                 Vector3.MoveTowards(clawTransform.position, _lerpTo, extendSpeed * Time.deltaTime);
-            DrawRope();
+            if (clawTransform.position == _lerpTo) Attached();
+        } else if (_currentGrappleState == GrappleState.Flying) {
+            transform.position =
+                Vector3.MoveTowards(transform.position, _lerpTo, flyingSpeed * Time.deltaTime);
+            clawTransform.position = _lerpTo;
+            if (Vector3.Distance(_lerpTo, transform.position) < howCloseBeforeDetach) StopFlying();
         }
     }
-    
+
+    private void LateUpdate() {
+        if (IsGrappling) DrawRope();
+    }
+
     public override void Use() {
-        if (GrapplePoint.Current == null || !CanGrappleToPoint) return;
+        if (GrapplePoint.Current == null || !CanGrappleToPoint) {
+            InvokeOnActionFinished();
+            return;
+        }
         
-        _lerpTo = GrapplePoint.Current.transform.position;
-        lineRenderer.positionCount = 0;
+        StartGrapple();
+        base.Use();
+    }
+    
+    private void StartGrapple() {
+        _whichPointToGrapple = GrapplePoint.Current;
+        _lerpTo = _whichPointToGrapple.transform.position;
+        lineRenderer.positionCount = 0; //Reset LineRenderer
         _playerMovement.SetFreeze(true);
         _playerMovement.LookAt(_lerpTo);
         _animator.SetTrigger("Grapple");
-        base.Use();
     }
 
     private bool CheckCanGrappleToPoint() {
@@ -71,15 +95,53 @@ public class Grapple : ArtifactBase {
         return false;
     }
 
-    private void Extend() {
-        Debug.Log("EXTEND");
-        _isExtending = true;
-    }
-
     private void DrawRope() {
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, tipTransform.position);
         lineRenderer.SetPosition(1, clawGearTransform.position);
+    }
+    
+    private void Extend() {
+        Debug.Log("EXTEND");
+        _currentGrappleState = GrappleState.Extending;
+    }
+
+    private void Attached() {
+        Debug.Log("HIT POINT");
+        
+        //evaluate which type of grapple point we hit
+        if (_whichPointToGrapple.TryGetComponent<GrappleLever>(out var grappleLever)) {
+            //Grapple lever
+            Debug.Log("GRAPPLING LEVER");
+            
+        } else {
+            //Normal grapple to point
+            Debug.Log("GRAPPLE FLY");
+            _animator.SetBool("Flying", true);
+            _currentGrappleState = GrappleState.Flying;
+        }
+        
+    }
+
+    private void StopFlying() {
+        Debug.Log("GRAPPLE FLY STOP");
+        _animator.SetBool("Flying", false);
+        ActionEnded();
+    }
+
+    protected override void ActionEnded() {
+        base.ActionEnded();
+        _playerMovement.SetFreeze(false);
+        clawTransform.localPosition = _clawLocalOrigin; //Reset claw position
+        _currentGrappleState = GrappleState.Idle;
+        _whichPointToGrapple = null;
+    }
+
+    private enum GrappleState {
+        Idle,
+        Extending,
+        Retracting,
+        Flying
     }
     
 }

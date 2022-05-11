@@ -18,7 +18,7 @@ public class GrappleIndicatorUI : MonoBehaviour {
     }
 
     private void Update() {
-        if (GrapplePoint.Current != null && Grapple.CanGrappleToPoint) {
+        if (GrapplePoint.Current != null) {
             grappleIndicator.transform.position = 
                 _cam.WorldToScreenPoint(GrapplePoint.Current.transform.position);
             grappleIndicator.color = Grapple.CanGrappleToPoint ? Color.green : Color.red;
