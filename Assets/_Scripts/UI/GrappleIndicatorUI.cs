@@ -11,6 +11,11 @@ public class GrappleIndicatorUI : MonoBehaviour {
     private void Awake() {
         _cam = Camera.main;
         GrapplePoint.OnStateChanged += OnGrapplePointStateChanged;
+        Grapple.OnGrappleStateChanged += OnGrappleStateChanged;
+    }
+
+    private void OnGrappleStateChanged(GrappleState state) {
+        grappleIndicator.gameObject.SetActive(state is GrappleState.Idle);
     }
 
     private void OnDestroy() {

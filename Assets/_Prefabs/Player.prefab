@@ -936,14 +936,14 @@ MonoBehaviour:
   <ArtifactType>k__BackingField: 4
   <InputKey>k__BackingField: 114
   damage: 5
-  cooldown: 0.5
+  cooldown: 0
   artifactObject: {fileID: 8377075593305366223}
   grappleRange: 10
   maxHeightDifference: 3.5
   extendSpeed: 15
   retractSpeed: 12
   flyingSpeed: 10
-  howCloseBeforeDetach: 1
+  howCloseBeforeDetach: 1.5
   clawTransform: {fileID: 3644302837784708524}
   clawGearTransform: {fileID: 7955228076566587365}
   tipTransform: {fileID: 3776705701942745540}

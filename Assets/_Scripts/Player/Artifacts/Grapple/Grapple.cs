@@ -14,8 +14,9 @@ public class Grapple : ArtifactBase {
     [SerializeField] private Transform clawGearTransform;
     [SerializeField] private Transform tipTransform;
     [SerializeField] private LineRenderer lineRenderer;
-
+    
     public static bool CanGrappleToPoint { get; private set; }
+    public static event Action<GrappleState> OnGrappleStateChanged;
 
     private float _sqrGrappleRange;
     private PlayerMovement _playerMovement;
@@ -36,15 +37,19 @@ public class Grapple : ArtifactBase {
     private void Update() {
         CanGrappleToPoint = CheckCanGrappleToPoint();
 
-        if (_currentGrappleState == GrappleState.Extending) {
-            clawTransform.position = 
+        if (_currentGrappleState is GrappleState.Extending) {
+            clawTransform.position =
                 Vector3.MoveTowards(clawTransform.position, _lerpTo, extendSpeed * Time.deltaTime);
-            if (clawTransform.position == _lerpTo) Attached();
-        } else if (_currentGrappleState == GrappleState.Flying) {
+            if (clawTransform.position == _lerpTo) Extended();
+        } else if (_currentGrappleState is GrappleState.Flying) {
             transform.position =
                 Vector3.MoveTowards(transform.position, _lerpTo, flyingSpeed * Time.deltaTime);
             clawTransform.position = _lerpTo;
             if (Vector3.Distance(_lerpTo, transform.position) < howCloseBeforeDetach) StopFlying();
+        } else if (_currentGrappleState is GrappleState.Retracting) {
+            clawTransform.localPosition =
+                Vector3.MoveTowards(clawTransform.localPosition, _lerpTo, retractSpeed * Time.deltaTime);
+            if (clawTransform.localPosition == _lerpTo) Retracted();
         }
     }
 
@@ -68,6 +73,7 @@ public class Grapple : ArtifactBase {
         lineRenderer.positionCount = 0; //Reset LineRenderer
         _playerMovement.SetFreeze(true);
         _playerMovement.LookAt(_lerpTo);
+        _currentGrappleState = GrappleState.WaitingToShoot;
         _animator.SetTrigger("Grapple");
     }
 
@@ -101,19 +107,22 @@ public class Grapple : ArtifactBase {
         lineRenderer.SetPosition(1, clawGearTransform.position);
     }
     
-    private void Extend() {
-        Debug.Log("EXTEND");
+    private void Shoot() {
+        if (_currentGrappleState != GrappleState.WaitingToShoot) return;
+        Debug.Log("SHOOT");
         _currentGrappleState = GrappleState.Extending;
     }
 
-    private void Attached() {
+    private void Extended() {
         Debug.Log("HIT POINT");
-        
+
         //evaluate which type of grapple point we hit
         if (_whichPointToGrapple.TryGetComponent<GrappleLever>(out var grappleLever)) {
             //Grapple lever
             Debug.Log("GRAPPLING LEVER");
-            
+            _currentGrappleState = GrappleState.Retracting;
+            _lerpTo = _clawLocalOrigin;
+            grappleLever.PullLever();
         } else {
             //Normal grapple to point
             Debug.Log("GRAPPLE FLY");
@@ -129,19 +138,36 @@ public class Grapple : ArtifactBase {
         ActionEnded();
     }
 
+    private void Retracted() {
+        Debug.Log("GRAPPLE RETRACTED");
+        _animator.SetTrigger("Detach");
+        ActionEnded();
+    }
+
     protected override void ActionEnded() {
         base.ActionEnded();
         _playerMovement.SetFreeze(false);
         clawTransform.localPosition = _clawLocalOrigin; //Reset claw position
         _currentGrappleState = GrappleState.Idle;
+        if (_whichPointToGrapple.TryGetComponent<EnemyBase>(out _)) {
+            //temp code for grapple and hit enemy
+            GetComponent<PlayerArtifacts>().UseArtifact(GetComponent<Axe>());
+        }
         _whichPointToGrapple = null;
     }
 
-    private enum GrappleState {
-        Idle,
-        Extending,
-        Retracting,
-        Flying
+    private void UpdateState(GrappleState state) {
+        //replace all 
+        _currentGrappleState = state;
+        OnGrappleStateChanged?.Invoke(state);
     }
-    
+
+}
+
+public enum GrappleState {
+    Idle,
+    WaitingToShoot,
+    Extending,
+    Retracting,
+    Flying
 }

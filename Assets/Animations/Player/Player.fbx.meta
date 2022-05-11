@@ -348,7 +348,7 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: Extend
+        functionName: Shoot
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 741f578a531e0e24dada0856a3df0416,
           type: 3}
@@ -371,7 +371,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

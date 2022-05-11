@@ -12,9 +12,10 @@ public class GrapplePoint : MonoBehaviour {
         OnStateChanged?.Invoke(true);
     }
 
-    private void OnMouseExit() {
+    protected void OnMouseExit() {
         if (Current == this) Current = null;
         OnStateChanged?.Invoke(false);
     }
 
+    private void OnDestroy() => OnStateChanged?.Invoke(false);
 }
