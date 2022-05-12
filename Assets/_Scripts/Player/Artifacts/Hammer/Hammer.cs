@@ -7,21 +7,26 @@ public class Hammer : ArtifactBase {
      * 1. Write out hammer functionality *
      * 2. Add support for double interaction indicator *
      * 3. No cooldown on puzzle element hit ?
-     * 4. Find similarities to axe and abstract them
+     * 4. Find similarities to axe and grapple and abstract them
      * 5. Test slowing down player turn and move speed when using artifact
      */
     
     [SerializeField] private float knockbackStength = 10f;
 
+    private HammerHitbox _hitbox;
+    
     public override void Use() {
         base.Use();
         _animator.SetTrigger("Hammer");
     }
 
+    protected override void Awake() {
+        base.Awake();
+        _hitbox = artifactObject.GetComponent<HammerHitbox>();
+    }
+
     private void OnGroundHit() {
-        if (artifactObject.TryGetComponent<HammerHitbox>(out var hitbox)) {
-            hitbox.EnableTrigger(this);
-        }
+        if (_hitbox != null) _hitbox.EnableTrigger(this);
     }
 
     public void ProcessHitboxData(List<Transform> colliders, Vector3 colliderCenter, float colliderRadius) {

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+        CutsceneManager.OnCutscenePlaying += SetFreeze;
 
         if (_cam == null) {
             Debug.LogWarning($"{nameof(PlayerMovement)} cannot find a camera!");
@@ -26,13 +27,18 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    private void OnDestroy() => CutsceneManager.OnCutscenePlaying -= SetFreeze;
+
     private void FixedUpdate() {
-        if (_frozen) return;
-        
         Vector3 inputVector = PlayerInput.Dir3;
         Vector3 movementVector = GetMovementVector(inputVector);
+        if (_animator != null) {
+            var movementVectorMagnitude = _frozen ? 0f : movementVector.magnitude;
+            _animator.SetFloat("Movement", movementVectorMagnitude);
+        }
+
+        if (_frozen) return;
         Move(movementVector);
-        if (_animator != null) _animator.SetFloat("Movement", movementVector.magnitude);
         
         if (lookAtMouse || movementVector.magnitude < .1f) RotateToMouse();
         else RotateToMovement(movementVector);
@@ -43,11 +49,13 @@ public class PlayerMovement : MonoBehaviour {
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance: 300f, mouseAreaLayer)) {
-            Vector3 target = hit.point;
-            target.y = transform.position.y;
-            
-            transform.LookAt(target);
+            LookAt(hit.point);
         }
+    }
+
+    public void LookAt(Vector3 lookPos) {
+        lookPos.y = transform.position.y;
+        transform.LookAt(lookPos);
     }
 
     //Rotate to the direction of the player's movement

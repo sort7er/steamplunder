@@ -33,10 +33,12 @@ public abstract class ArtifactBase : MonoBehaviour {
         artifactObject.SetActive(true);
     }
 
-    protected void ActionEnded() {
+    protected virtual void ActionEnded() {
         artifactObject.SetActive(false);
         OnActionFinished?.Invoke();
         StartCoroutine(AttackCooldown());
         _animator.SetTrigger("Action Ended");
     }
+    
+    protected void InvokeOnActionFinished() => OnActionFinished?.Invoke();
 }
