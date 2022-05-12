@@ -940,7 +940,7 @@ MonoBehaviour:
   artifactObject: {fileID: 8377075593305366223}
   grappleRange: 10
   maxHeightDifference: 3.5
-  extendSpeed: 15
+  extendSpeed: 17
   retractSpeed: 12
   flyingSpeed: 10
   howCloseBeforeDetach: 1.5

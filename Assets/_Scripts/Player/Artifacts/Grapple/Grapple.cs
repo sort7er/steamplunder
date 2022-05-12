@@ -37,16 +37,16 @@ public class Grapple : ArtifactBase {
     private void Update() {
         CanGrappleToPoint = CheckCanGrappleToPoint();
 
-        if (_currentGrappleState is GrappleState.Extending) {
+        if (_currentGrappleState == GrappleState.Extending) {
             clawTransform.position =
                 Vector3.MoveTowards(clawTransform.position, _lerpTo, extendSpeed * Time.deltaTime);
             if (clawTransform.position == _lerpTo) Extended();
-        } else if (_currentGrappleState is GrappleState.Flying) {
+        } else if (_currentGrappleState == GrappleState.Flying) {
             transform.position =
                 Vector3.MoveTowards(transform.position, _lerpTo, flyingSpeed * Time.deltaTime);
             clawTransform.position = _lerpTo;
             if (Vector3.Distance(_lerpTo, transform.position) < howCloseBeforeDetach) StopFlying();
-        } else if (_currentGrappleState is GrappleState.Retracting) {
+        } else if (_currentGrappleState == GrappleState.Retracting) {
             clawTransform.localPosition =
                 Vector3.MoveTowards(clawTransform.localPosition, _lerpTo, retractSpeed * Time.deltaTime);
             if (clawTransform.localPosition == _lerpTo) Retracted();
@@ -73,7 +73,7 @@ public class Grapple : ArtifactBase {
         lineRenderer.positionCount = 0; //Reset LineRenderer
         _playerMovement.SetFreeze(true);
         _playerMovement.LookAt(_lerpTo);
-        _currentGrappleState = GrappleState.WaitingToShoot;
+        UpdateState(GrappleState.WaitingToShoot);
         _animator.SetTrigger("Grapple");
     }
 
@@ -110,7 +110,7 @@ public class Grapple : ArtifactBase {
     private void Shoot() {
         if (_currentGrappleState != GrappleState.WaitingToShoot) return;
         Debug.Log("SHOOT");
-        _currentGrappleState = GrappleState.Extending;
+        UpdateState(GrappleState.Extending);
     }
 
     private void Extended() {
@@ -120,14 +120,14 @@ public class Grapple : ArtifactBase {
         if (_whichPointToGrapple.TryGetComponent<GrappleLever>(out var grappleLever)) {
             //Grapple lever
             Debug.Log("GRAPPLING LEVER");
-            _currentGrappleState = GrappleState.Retracting;
+            UpdateState(GrappleState.Retracting);
             _lerpTo = _clawLocalOrigin;
             grappleLever.PullLever();
         } else {
             //Normal grapple to point
             Debug.Log("GRAPPLE FLY");
             _animator.SetBool("Flying", true);
-            _currentGrappleState = GrappleState.Flying;
+            UpdateState(GrappleState.Flying);
         }
         
     }
@@ -148,8 +148,8 @@ public class Grapple : ArtifactBase {
         base.ActionEnded();
         _playerMovement.SetFreeze(false);
         clawTransform.localPosition = _clawLocalOrigin; //Reset claw position
-        _currentGrappleState = GrappleState.Idle;
-        if (_whichPointToGrapple.TryGetComponent<EnemyBase>(out _)) {
+        UpdateState(GrappleState.Idle);
+        if (_whichPointToGrapple != null && _whichPointToGrapple.TryGetComponent<EnemyBase>(out _)) {
             //temp code for grapple and hit enemy
             GetComponent<PlayerArtifacts>().UseArtifact(GetComponent<Axe>());
         }
@@ -157,7 +157,6 @@ public class Grapple : ArtifactBase {
     }
 
     private void UpdateState(GrappleState state) {
-        //replace all 
         _currentGrappleState = state;
         OnGrappleStateChanged?.Invoke(state);
     }
