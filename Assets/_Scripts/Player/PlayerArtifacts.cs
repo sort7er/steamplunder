@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,7 +40,7 @@ public class PlayerArtifacts : MonoBehaviour {
         }
     }
 
-    private void UseArtifact(ArtifactBase artifact) {
+    public void UseArtifact(ArtifactBase artifact) {
         _actionOngoing = true;
         artifact.Use();
     }
