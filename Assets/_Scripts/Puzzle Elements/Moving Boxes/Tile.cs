@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour {
 
-    private Box _currentBox;
+    protected Box _currentBox;
 
     public bool TileOccupied => _currentBox != null;
 

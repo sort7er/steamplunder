@@ -11,8 +11,9 @@ public class PlateTile : Tile {
     public bool IsPressed => _playerOn || TileOccupied;
 
     public override Tile TakeTile(Box box) {
+        _currentBox = box;
         StateChanged();
-        return base.TakeTile(box);
+        return this;
     }
 
     public override void ClearTile() {

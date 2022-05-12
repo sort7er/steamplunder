@@ -24,9 +24,9 @@ public class CutsceneTrigger : MonoBehaviour {
             CutsceneManager.PlayCutscene(playableDirector);
     }
 
-    private void OnEnable() => CutsceneManager.OnCutsceneFinished += OnCutsceneFinished;
+    private void OnEnable() => CutsceneManager.OnCutscenePlaying += OnCutscenePlaying;
 
-    private void OnDestroy() => CutsceneManager.OnCutsceneFinished -= OnCutsceneFinished;
+    private void OnDestroy() => CutsceneManager.OnCutscenePlaying -= OnCutscenePlaying;
 
     private void OnTriggerEnter(Collider other) {
         if (_played || !other.CompareTag("Player")) return;
@@ -39,5 +39,8 @@ public class CutsceneTrigger : MonoBehaviour {
         }
     }
 
-    private void OnCutsceneFinished() => onCutsceneFinished.Invoke();
+    private void OnCutscenePlaying(bool isPlaying) {
+        if (isPlaying) return;
+        onCutsceneFinished.Invoke();
+    }
 }

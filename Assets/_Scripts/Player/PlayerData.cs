@@ -19,7 +19,8 @@ public static class PlayerData {
             return;
         }
 
-        if (Health == 0) SetHealth(maxHealth);
+        MaxHealth = maxHealth;
+        SetHealth(maxHealth);
         SetupArtifactStatus();
 
         _initialized = true;
@@ -31,13 +32,25 @@ public static class PlayerData {
 
     //Health
     public static int Health { get; private set; }
+    public static int MaxHealth { get; private set; }
 
     public static void SetHealth(int amount) {
         Health = amount;
-        OnHealthChanged?.Invoke(Health);
+        OnHealthChanged?.Invoke(Health, MaxHealth);
+    }
+    
+    public static void Damage(int amount) {
+        SetHealth(Health - amount);
+        if (Health <= 0) Player.GetPlayer()?.Die();
     }
 
-    public static event Action<int> OnHealthChanged;
+    public static void Heal(int amount) {
+        int healthToSet = Health + amount;
+        if (healthToSet > MaxHealth) healthToSet = MaxHealth;
+        SetHealth(healthToSet);
+    }
+    
+    public static event Action<int, int> OnHealthChanged;
 
     //Artifact
     public static Dictionary<Artifact, bool> ArtifactStatus { get; } = new();

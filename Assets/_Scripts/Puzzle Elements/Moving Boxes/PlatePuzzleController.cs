@@ -4,8 +4,10 @@ using UnityEngine.Events;
 
 public class PlatePuzzleController : MonoBehaviour {
 
+    [SerializeField] private bool canUndoPuzzle;
     [SerializeField] private PlateTile[] platesToCheck;
     [SerializeField] private UnityEvent onPuzzleCompletion;
+    [SerializeField] private UnityEvent onPuzzleUndone;
 
     private bool _completed;
     
@@ -22,12 +24,17 @@ public class PlatePuzzleController : MonoBehaviour {
     }
 
     private void OnPlatePressStateChanged() {
-        if (_completed) return;
         foreach (var plateTile in platesToCheck) {
-            if (!plateTile.IsPressed) return;
+            if (plateTile.IsPressed) continue;
+            if (canUndoPuzzle) {
+                if (_completed) onPuzzleUndone.Invoke();
+                _completed = false;
+            }
+            return;
         }
         
         //All plates are pressed if this point is reached
+        if (_completed) return;
         _completed = true;
         onPuzzleCompletion.Invoke();
     }

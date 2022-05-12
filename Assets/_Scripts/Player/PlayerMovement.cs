@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -18,12 +19,15 @@ public class PlayerMovement : MonoBehaviour {
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+        CutsceneManager.OnCutscenePlaying += SetFreeze;
 
         if (_cam == null) {
             Debug.LogWarning($"{nameof(PlayerMovement)} cannot find a camera!");
             SetFreeze(true);
         }
     }
+
+    private void OnDestroy() => CutsceneManager.OnCutscenePlaying -= SetFreeze;
 
     private void FixedUpdate() {
         Vector3 inputVector = PlayerInput.Dir3;

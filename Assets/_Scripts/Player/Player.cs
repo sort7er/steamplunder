@@ -16,18 +16,7 @@ public class Player : MonoBehaviour {
         PlayerData.Init(maxHealth);
     }
 
-    public void Damage(int amount) {
-        PlayerData.SetHealth(PlayerData.Health - amount);
-        if (PlayerData.Health <= 0) Die();
-    }
-
-    public void Heal(int amount) {
-        int healthToSet = PlayerData.Health + amount;
-        if (healthToSet > maxHealth) healthToSet = maxHealth;
-        PlayerData.SetHealth(healthToSet);
-    }
-
-    private void Die() {
-        
+    public void Die() {
+        Debug.Log("Player dead");
     }
 }
