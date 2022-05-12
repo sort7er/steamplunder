@@ -1,14 +1,22 @@
 fileFormatVersion: 2
-guid: d3e4d264d9a1fc540931cbeb5cd0e06c
+guid: a2dce92efd0c95f4c96206e45f38e1e5
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 5984496454500463648
+    second: Open
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HollowCog_Material
-    second: {fileID: 2100000, guid: 3a6a37a0320e38b478379e0c4d94cf92, type: 2}
+      name: DungeonEntrance_1_Material
+    second: {fileID: 2100000, guid: 1efdb8e990f9d214e8ef5b44757031a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FullCog_Material
+    second: {fileID: 2100000, guid: 5c80df22b520e9043a33f3ff2d1c5fa8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

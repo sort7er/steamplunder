@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3e4d264d9a1fc540931cbeb5cd0e06c
+guid: c5d8802e5dd21e440b4545ba1990789a
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HollowCog_Material
-    second: {fileID: 2100000, guid: 3a6a37a0320e38b478379e0c4d94cf92, type: 2}
+      name: Bush_1x1_Material
+    second: {fileID: 2100000, guid: 5c632d3a4df5b5545b344c559e8eddae, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
