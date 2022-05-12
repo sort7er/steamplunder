@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 232aff5498bd76f46a7bdb3370f1ccf5
+guid: 353e66e813133ef44993f05c31adf4f2
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Material
+    second: {fileID: 2100000, guid: b08e8753051b98144ba32e58cab9d96c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HollowCog_Material
+    second: {fileID: 2100000, guid: 3a6a37a0320e38b478379e0c4d94cf92, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +47,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1

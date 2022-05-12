@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: e1f0eaf587939aa46b06a2f324b06f04
+guid: 18b3257b0562704409a2d5c3e116cc06
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrokenBridge_Material
+    second: {fileID: 2100000, guid: d9173f6508be5414bbc2e35dd2b45ee4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
