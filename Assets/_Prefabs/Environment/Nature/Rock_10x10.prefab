@@ -67,5 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_10x10
       objectReference: {fileID: 0}
+    - target: {fileID: 2640475391929742355, guid: 61617abeab2a58f44afa9d9c718576bc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 56cc50719f9d1a64b9a8e366920aa77f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61617abeab2a58f44afa9d9c718576bc, type: 3}
